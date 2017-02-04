@@ -34,13 +34,13 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/hlpostman/Flicks/blob/master/Flicks_Video_WalkThrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-I spent a few unsuccessful hours trying to build a details view controller. I will come back to that.  I also made outlines for fleshing out the visual of the network error message and may implement that and the search bar or collection view.
+I spent a few unsuccessful hours trying to build a details view controller. I will come back to that.  I also made outlines for fleshing out the visual of the network error message and may implement that and the search bar or collection view.  My networking error message shows if the network cannot be accessed on launch, but does not seem to recognize itself as a target of the pull-to-refresh, so if I turn the wifi back on and pull to refresh, I’m stuck at the network error.  Working on this.
 
 ## License
 
