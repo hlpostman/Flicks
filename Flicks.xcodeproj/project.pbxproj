@@ -14,6 +14,7 @@
 		BE7E03D41E466B3D007FB41A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE7E03D21E466B3D007FB41A /* LaunchScreen.storyboard */; };
 		BE7E03DC1E466B70007FB41A /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7E03DB1E466B70007FB41A /* MoviesViewController.swift */; };
 		BE7E03E01E466D93007FB41A /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7E03DF1E466D93007FB41A /* MovieCell.swift */; };
+		BEC6326A1E47F172005E8CC0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC632691E47F172005E8CC0 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		BE7E03D51E466B3D007FB41A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE7E03DB1E466B70007FB41A /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		BE7E03DF1E466D93007FB41A /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		BEC632691E47F172005E8CC0 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				BE7E03DB1E466B70007FB41A /* MoviesViewController.swift */,
+				BEC632691E47F172005E8CC0 /* DetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				BE7E03CA1E466B3D007FB41A /* AppDelegate.swift in Sources */,
 				BE7E03DC1E466B70007FB41A /* MoviesViewController.swift in Sources */,
 				BE7E03E01E466D93007FB41A /* MovieCell.swift in Sources */,
+				BEC6326A1E47F172005E8CC0 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +401,7 @@
 				BE7E03DA1E466B3D007FB41A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
