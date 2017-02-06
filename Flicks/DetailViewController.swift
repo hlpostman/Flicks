@@ -33,6 +33,7 @@ class DetailViewController: UIViewController {
         titleLabel.text = title
         let overview = movie["overview"] as? String
         overviewLabel.text = overview
+        overviewLabel.sizeToFit()
         
         // Do any additional setup after loading the view.
         print("You clicked \(title!)🎥")
