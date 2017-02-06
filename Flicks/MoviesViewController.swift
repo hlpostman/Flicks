@@ -16,10 +16,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var networkingErrorView: UITableView!
     var movies: [NSDictionary]?
+    var endpoint: String!
     
-    func makeNetworkRequest() -> URLSessionTask {
+    func makeNetworkRequest(endpoint: String) -> URLSessionTask {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -42,12 +43,14 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return task
     }
     
-    func getPosterURL(id: Int) -> NSURL {
+    func getPosterURL(id: Int) -> NSURL? {
         let movie = self.movies![id] as NSDictionary
-        let posterPath = movie["poster_path"] as? String ?? "Error fetching poster_path"
-        let posterBaseURL = "https://image.tmdb.org/t/p/w500/"
-        let posterURL = NSURL(string: posterBaseURL + posterPath)
-        return posterURL!
+        if let posterPath = movie["poster_path"] as? String {
+            let posterBaseURL = "https://image.tmdb.org/t/p/w500/"
+            let posterURL = NSURL(string: posterBaseURL + posterPath)
+            return posterURL
+        }
+        return nil
     }
     
     override func viewDidLoad() {
@@ -62,13 +65,14 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 //        tableView.allowsSelection = false
         
         // Make GET request to the "Now Playing" endpoint of The Movie Database API
-        let task = makeNetworkRequest()
+        let task = makeNetworkRequest(endpoint: endpoint)
         task.resume()
         
     }
     
+    
     func refreshControlAction (refreshControl: UIRefreshControl) {
-        let task = makeNetworkRequest()
+        let task = makeNetworkRequest(endpoint: endpoint)
         refreshControl.endRefreshing()
         task.resume()
     }
@@ -88,25 +92,32 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let movie = movies![indexPath.row]
         let title = movie["title"] as? String ?? "Error fetching title"
         let overview = movie["overview"] as? String ?? "Error fetching overview"
-        let posterURL = getPosterURL(id: (indexPath.row))
+        if let posterURL = getPosterURL(id: (indexPath.row)) {
+            cell.posterImageView.setImageWith(posterURL as URL)
+        }
+        
         //        Get poster image URL code, in case the asbtraction to function was a bad idea:
         //        let posterPath = movie["poster_path"] as? String ?? "Error fetching poster_path"
         //        let posterBaseURL = "https://image.tmdb.org/t/p/w500/"
         //        let posterURL = NSURL(string: posterBaseURL + posterPath)
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
-        cell.posterImageView.setImageWith(posterURL as URL)
         return cell
     }
     
-    /*
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
-     }
-     */
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)
+        let movie = movies![(indexPath?.row)!]
+        
+        let detailViewController = segue.destination as! DetailViewController
+        detailViewController.movie = movie
+    }
+ 
     
 }
