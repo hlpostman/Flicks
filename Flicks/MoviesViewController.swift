@@ -102,6 +102,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         //        let posterURL = NSURL(string: posterBaseURL + posterPath)
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
+        cell.selectionStyle = .none
         return cell
     }
     
