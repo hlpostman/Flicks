@@ -42,12 +42,14 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return task
     }
     
-    func getPosterURL(id: Int) -> NSURL {
+    func getPosterURL(id: Int) -> NSURL? {
         let movie = self.movies![id] as NSDictionary
-        let posterPath = movie["poster_path"] as? String ?? "Error fetching poster_path"
-        let posterBaseURL = "https://image.tmdb.org/t/p/w500/"
-        let posterURL = NSURL(string: posterBaseURL + posterPath)
-        return posterURL!
+        if let posterPath = movie["poster_path"] as? String {
+            let posterBaseURL = "https://image.tmdb.org/t/p/w500/"
+            let posterURL = NSURL(string: posterBaseURL + posterPath)
+            return posterURL
+        }
+        return nil
     }
     
     override func viewDidLoad() {
@@ -88,14 +90,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let movie = movies![indexPath.row]
         let title = movie["title"] as? String ?? "Error fetching title"
         let overview = movie["overview"] as? String ?? "Error fetching overview"
-        let posterURL = getPosterURL(id: (indexPath.row))
+        if let posterURL = getPosterURL(id: (indexPath.row)) {
+            cell.posterImageView.setImageWith(posterURL as URL)
+        }
+        
         //        Get poster image URL code, in case the asbtraction to function was a bad idea:
         //        let posterPath = movie["poster_path"] as? String ?? "Error fetching poster_path"
         //        let posterBaseURL = "https://image.tmdb.org/t/p/w500/"
         //        let posterURL = NSURL(string: posterBaseURL + posterPath)
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
-        cell.posterImageView.setImageWith(posterURL as URL)
         return cell
     }
     
