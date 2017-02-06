@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AFNetworking
 
 class DetailViewController: UIViewController {
     
@@ -18,6 +19,14 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        // Set poster background
+        if let posterPath = movie["poster_path"] as? String {
+            let posterBaseURL = "https://image.tmdb.org/t/p/w500/"
+            let posterURL = NSURL(string: posterBaseURL + posterPath)
+            posterImageView.setImageWith(posterURL as! URL)
+        }
+        // Set title and overview text
         let title = movie["title"] as? String
         titleLabel.text = title
         let overview = movie["overview"] as? String
