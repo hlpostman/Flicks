@@ -9,14 +9,17 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
     @IBOutlet weak var posterImageView: UIImageView!
-
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    
+    var movie: NSDictionary!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        print("You clicked 🎥", movie)
     }
 
     override func didReceiveMemoryWarning() {
