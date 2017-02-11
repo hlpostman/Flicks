@@ -68,6 +68,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate = self
         searchBar.delegate = self
         searchBar.placeholder = "Search Movie Titles..."
+        
 //        tableView.allowsSelection = false
         
         // Make GET request to the "Now Playing" endpoint of The Movie Database API
@@ -116,9 +117,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         if searchText.isEmpty {
             filteredMovies = movies
         } else {
-            filteredMovies = searchText.isEmpty ? movies : movies!.filter({ (movie) -> Bool in
-                return (movie["title"] as! String).hasPrefix(searchText)
-        })
+                filteredMovies = searchText.isEmpty ? movies : movies!.filter({ (movie) -> Bool in
+                    return (movie["title"] as! String).lowercased().hasPrefix(searchText.lowercased())
+            })
         }
         tableView.reloadData()
     }
