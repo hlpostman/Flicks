@@ -67,6 +67,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.dataSource = self
         tableView.delegate = self
         searchBar.delegate = self
+        searchBar.placeholder = "Search Movie Titles..."
 //        tableView.allowsSelection = false
         
         // Make GET request to the "Now Playing" endpoint of The Movie Database API
