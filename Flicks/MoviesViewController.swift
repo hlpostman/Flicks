@@ -133,7 +133,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
      // Pass the selected object to the new view controller.
         let cell = sender as! UITableViewCell
         let indexPath = tableView.indexPath(for: cell)
-        let movie = movies![(indexPath?.row)!]
+        let movie = filteredMovies![(indexPath?.row)!]
         
         let detailViewController = segue.destination as! DetailViewController
         detailViewController.movie = movie
