@@ -17,6 +17,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var networkingErrorView: UITableView!
     var movies: [NSDictionary]?
+    var filteredMovies: [NSDictionary]?
     var endpoint: String!
     
     func makeNetworkRequest(endpoint: String) -> URLSessionTask {
@@ -31,6 +32,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                     print(dataDictionary)
                     self.networkingErrorView.isHidden = true
                     self.movies = (dataDictionary["results"] as! [NSDictionary])
+                    // So that we get something on launch set self.filteredMovies to the
+                    // self.movies array pulled by the network request
+                    self.filteredMovies = self.movies
                     self.tableView.reloadData()
                 }
             }
@@ -56,7 +60,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
         self.networkingErrorView.isHidden = true
@@ -85,13 +88,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies?.count ?? 0
+        return filteredMovies?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         print(cell.titleLabel?.text ?? "Something went wrong")
-        let movie = movies![indexPath.row]
+        let movie = filteredMovies![indexPath.row]
         let title = movie["title"] as? String ?? "Error fetching title"
         let overview = movie["overview"] as? String ?? "Error fetching overview"
         if let posterURL = getPosterURL(id: (indexPath.row)) {
@@ -107,6 +110,18 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.selectionStyle = .none
         return cell
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            filteredMovies = movies
+        } else {
+            filteredMovies = searchText.isEmpty ? movies : movies!.filter({ (movie) -> Bool in
+                return (movie["title"] as! String).hasPrefix(searchText)
+        })
+        }
+        tableView.reloadData()
+    }
+    
     
      // MARK: - Navigation
      
