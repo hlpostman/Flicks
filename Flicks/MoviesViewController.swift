@@ -10,9 +10,10 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var networkingErrorView: UITableView!
     var movies: [NSDictionary]?
@@ -62,6 +63,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.insertSubview(refreshControl, at: 0)
         tableView.dataSource = self
         tableView.delegate = self
+        searchBar.delegate = self
 //        tableView.allowsSelection = false
         
         // Make GET request to the "Now Playing" endpoint of The Movie Database API
