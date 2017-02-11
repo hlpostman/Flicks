@@ -62,7 +62,7 @@ I spent a few unsuccessful hours trying to build a details view controller. I wi
 
 **Flicks** is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **3** hours spent in total
+Time spent: **6** hours spent in total
 
 ## User Stories
 
@@ -80,6 +80,7 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [x] Homemade tab bar icons.
+- [x] Implemented the search bar that was an optional last week with a case-insensitive prefix search
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
@@ -96,7 +97,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+I had some trouble getting my search bar to search in a way that was both case-insensitive AND prefix oriented.  But I came up with a solution :D  You can make both your `searchText` input and your compare strings (titles keyed to from the movie stats dictionary) both `lowercased()` when you invoke either in the `.hasPrefix` filtering routine.
 
 ## License
 
