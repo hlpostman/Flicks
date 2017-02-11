@@ -9,18 +9,32 @@
 import UIKit
 import AFNetworking
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var castCollectionView: UICollectionView!
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     
     var movie: NSDictionary!
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 20// .count of dictionary returned by request for "cast" endpoint
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HeadshotCell", for: indexPath as IndexPath) as! HeadshotCell
+        
+        return cell
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        castCollectionView.dataSource = self
         scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: infoView.frame.origin.y + infoView.frame.size.height)
         // Set poster background
         if let posterPath = movie["poster_path"] as? String {
