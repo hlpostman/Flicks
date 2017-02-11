@@ -49,7 +49,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func getPosterURL(id: Int) -> NSURL? {
-        let movie = self.movies![id] as NSDictionary
+        let movie = self.filteredMovies![id] as NSDictionary
         if let posterPath = movie["poster_path"] as? String {
             let posterBaseURL = "https://image.tmdb.org/t/p/w500/"
             let posterURL = NSURL(string: posterBaseURL + posterPath)
