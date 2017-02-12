@@ -137,6 +137,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         let detailViewController = segue.destination as! DetailViewController
         detailViewController.movie = movie
+        detailViewController.hidesBottomBarWhenPushed = true
     }
  
     
