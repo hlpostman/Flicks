@@ -15,6 +15,7 @@
 		BE7E03DC1E466B70007FB41A /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7E03DB1E466B70007FB41A /* MoviesViewController.swift */; };
 		BE7E03E01E466D93007FB41A /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7E03DF1E466D93007FB41A /* MovieCell.swift */; };
 		BEC6326A1E47F172005E8CC0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC632691E47F172005E8CC0 /* DetailViewController.swift */; };
+		BEFEEEBE1E4F1C8F00373439 /* HeadshotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFEEEBD1E4F1C8F00373439 /* HeadshotCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		BE7E03DB1E466B70007FB41A /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		BE7E03DF1E466D93007FB41A /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		BEC632691E47F172005E8CC0 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		BEFEEEBD1E4F1C8F00373439 /* HeadshotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeadshotCell.swift; path = Flicks/HeadshotCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 		BE7E03E11E466E15007FB41A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BEFEEEBD1E4F1C8F00373439 /* HeadshotCell.swift */,
 				BE7E03DF1E466D93007FB41A /* MovieCell.swift */,
 			);
 			name = Views;
@@ -236,6 +239,7 @@
 			files = (
 				BE7E03CA1E466B3D007FB41A /* AppDelegate.swift in Sources */,
 				BE7E03DC1E466B70007FB41A /* MoviesViewController.swift in Sources */,
+				BEFEEEBE1E4F1C8F00373439 /* HeadshotCell.swift in Sources */,
 				BE7E03E01E466D93007FB41A /* MovieCell.swift in Sources */,
 				BEC6326A1E47F172005E8CC0 /* DetailViewController.swift in Sources */,
 			);
