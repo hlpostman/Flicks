@@ -79,7 +79,7 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [x] Homemade tab bar icons.
+- [x] Homemade tab bar icons
 - [x] Implemented the search bar that was an optional last week
 	- [x] Case-insensitive searching
 	- [x] Search keywords anywhere in title (not just prefix of whole title, e.g. you can get “Hidden Figures” by searching “Fig” not just “Hid”)
@@ -89,7 +89,7 @@ The following **additional** features are implemented:
 	- [x] Movie info scrolls over poster backdrop
 	- [x] Movie overview is in fixed-size area, using its own scrollview to accommodate varying length descriptions
 	- [x] Cast headshots and names appear in collection view
-	- [x] Tap to dismiss info scroll view and reset the overview and cast collection views to original positions
+	- [x] Tap to dismiss info scroll view and reset the overview text and cast collection views to original un-scrolled positions
 
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
