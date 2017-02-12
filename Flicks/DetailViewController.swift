@@ -39,7 +39,7 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
         print(task)
         MBProgressHUD.hide(for: self.view, animated: true)
-        return task
+        return task 
     }
 
     
@@ -50,15 +50,17 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HeadshotCell", for: indexPath as IndexPath) as! HeadshotCell
         if let castMember = cast?[indexPath.row] {
-            let castMemberName = castMember["name"] as? String ?? "Error fetching name"
             if let movieId = movie["id"] {
-                print("WE GOT AN ID BUY THE VANILLA! 🍌🍌🍌🍌🍌🍌🍌🍌\(movieId)🍌🍌🍌🍌🍌🍌🍌🍌\(castMemberName)🍌")
+                print("WE GOT AN ID BUY THE VANILLA! 🍌🍌🍌🍌🍌🍌🍌🍌\(movieId)🍌🍌🍌🍌🍌🍌🍌🍌)")//\(castMemberName)🍌")
                 // Get and load cast member headshot
                 if let headshotPath = castMember["profile_path"] as? String {
                     let headshotBaseURL = "https://image.tmdb.org/t/p/w500/"
                     let headshotURL = NSURL(string: headshotBaseURL + headshotPath)
                     cell.headshotImageView.setImageWith(headshotURL as! URL)
                 }
+                // Get and place cast member name
+                let castMemberName = castMember["name"] as? String ?? "Error fetching name"
+                cell.actorNameLabel.text = castMemberName
             }
                 
         } else {
@@ -94,6 +96,7 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         } else {
             print("💖NO MOVIEID💛")
         }
+//        self.tabBarController?.tabBar.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {

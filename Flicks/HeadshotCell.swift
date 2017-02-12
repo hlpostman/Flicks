@@ -11,5 +11,6 @@ import UIKit
 class HeadshotCell: UICollectionViewCell {
     @IBOutlet weak var headshotImageView: UIImageView!
  
+    @IBOutlet weak var actorNameLabel: UILabel!
     
 }
