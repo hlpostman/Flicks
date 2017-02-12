@@ -13,6 +13,7 @@ import MBProgressHUD
 class DetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var overviewLabelScrollView: UIScrollView!
     @IBOutlet weak var castCollectionView: UICollectionView!
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var infoView: UIView!
@@ -31,15 +32,13 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             if let data = data {
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
-                    print(dataDictionary)
                     self.cast = (dataDictionary["cast"] as! [NSDictionary])
                     self.castCollectionView.reloadData()
                 }
             }
         }
-        print(task)
         MBProgressHUD.hide(for: self.view, animated: true)
-        return task
+        return task 
     }
 
     
@@ -50,28 +49,43 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HeadshotCell", for: indexPath as IndexPath) as! HeadshotCell
         if let castMember = cast?[indexPath.row] {
-            let castMemberName = castMember["name"] as? String ?? "Error fetching name"
-            if let movieId = movie["id"] {
-                print("WE GOT AN ID BUY THE VANILLA! 🍌🍌🍌🍌🍌🍌🍌🍌\(movieId)🍌🍌🍌🍌🍌🍌🍌🍌\(castMemberName)🍌")
-                // Get and load cast member headshot
-                if let headshotPath = castMember["profile_path"] as? String {
-                    let headshotBaseURL = "https://image.tmdb.org/t/p/w500/"
-                    let headshotURL = NSURL(string: headshotBaseURL + headshotPath)
-                    cell.headshotImageView.setImageWith(headshotURL as! URL)
-                }
+            // Get and load cast member headshot
+            if let headshotPath = castMember["profile_path"] as? String {
+                let headshotBaseURL = "https://image.tmdb.org/t/p/w500/"
+                let headshotURL = NSURL(string: headshotBaseURL + headshotPath)
+                cell.headshotImageView.setImageWith(headshotURL as! URL)
             }
+            // Get and place cast member name
+            let castMemberName = castMember["name"] as? String ?? "Error fetching name"
+            cell.actorNameLabel.text = castMemberName
                 
-        } else {
-            print("You didn't get castMember from cast![indexPath.row] 😒 💗")
         }
         return cell
     }
     
+    func dismissAndResetScrollView() {
+        // Dismiss scroll view
+        scrollView.setContentOffset(CGPoint(x:0, y:0), animated: true)
+        // Reset overview label scroll view
+        overviewLabelScrollView.setContentOffset(CGPoint(x:0, y:0), animated: true)
+        // Reset cast collection view scroll
+        castCollectionView.setContentOffset(CGPoint(x:0, y:0), animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         castCollectionView.dataSource = self
         scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: infoView.frame.origin.y + infoView.frame.size.height)
+        scrollView.contentSize.height = 950
+        // Instead of setting overview label number of lines to 0, calculate the number of lines
+        // for each overview, so that this information can be used in setting the content size
+        // for the overview label scroll view.  This way, any long description has a sufficient
+        // content size, and the text of short descriptions never scrolls completely out of view
+        // as it will when the content size is much larger than the label.
+        overviewLabel.numberOfLines = ((movie["overview"] as? String)?.characters.count)! / 30
+        let overviewScrollHeight = overviewLabel.font.pointSize * CGFloat(overviewLabel.numberOfLines)
+        overviewLabelScrollView.contentSize.height =  overviewScrollHeight
         // Set poster background
         if let posterPath = movie["poster_path"] as? String {
             let posterBaseURL = "https://image.tmdb.org/t/p/w500/"
@@ -86,14 +100,13 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         overviewLabel.sizeToFit()
         
         // Do any additional setup after loading the view.
-        print("You clicked \(title!)🎥")
         if let movieId = movie["id"] as? Int {
-            print("💖MovieId: \(movieId)💛")
             let task = castNetworkRequest(movieId: movieId)
             task.resume()
-        } else {
-            print("💖NO MOVIEID💛")
         }
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissAndResetScrollView))
+        view.addGestureRecognizer(tap)
     }
 
     override func didReceiveMemoryWarning() {

@@ -29,7 +29,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             if let data = data {
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
-                    print(dataDictionary)
                     self.networkingErrorView.isHidden = true
                     self.movies = (dataDictionary["results"] as! [NSDictionary])
                     // So that we get something on launch set self.filteredMovies to the
@@ -43,7 +42,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 MBProgressHUD.showAdded(to: self.networkingErrorView, animated: true)
             }
         }
-        print(task)
         MBProgressHUD.hide(for: self.view, animated: true)
         return task
     }
@@ -95,18 +93,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        print(cell.titleLabel?.text ?? "Something went wrong")
         let movie = filteredMovies![indexPath.row]
         let title = movie["title"] as? String ?? "Error fetching title"
         let overview = movie["overview"] as? String ?? "Error fetching overview"
         if let posterURL = getPosterURL(id: (indexPath.row)) {
             cell.posterImageView.setImageWith(posterURL as URL)
         }
-        
-        //        Get poster image URL code, in case the asbtraction to function was a bad idea:
-        //        let posterPath = movie["poster_path"] as? String ?? "Error fetching poster_path"
-        //        let posterBaseURL = "https://image.tmdb.org/t/p/w500/"
-        //        let posterURL = NSURL(string: posterBaseURL + posterPath)
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
         cell.selectionStyle = .none
@@ -137,6 +129,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         let detailViewController = segue.destination as! DetailViewController
         detailViewController.movie = movie
+        detailViewController.hidesBottomBarWhenPushed = true
     }
  
     
