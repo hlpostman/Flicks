@@ -14,11 +14,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
+//    @IBOutlet weak var detailsPrompt: UIView!
     @IBOutlet weak var networkingErrorView: UITableView!
     var movies: [NSDictionary]?
     var filteredMovies: [NSDictionary]?
     var endpoint: String!
+//    let cell = MovieCell() // to have access to detailsPrompt
     
     func makeNetworkRequest(endpoint: String) -> URLSessionTask {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
@@ -72,6 +73,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         // Make GET request to the "Now Playing" endpoint of The Movie Database API
         let task = makeNetworkRequest(endpoint: endpoint)
         task.resume()
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self.cell.detailsPromptLabel, action: #selector(goToDetails))
+//        view.addGestureRecognizer(tap)
         
     }
     
@@ -150,9 +153,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
+    
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
         let cell = sender as! UITableViewCell
         let indexPath = tableView.indexPath(for: cell)
         let movie = filteredMovies![(indexPath?.row)!]
@@ -161,6 +166,5 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         detailViewController.movie = movie
         detailViewController.hidesBottomBarWhenPushed = true
     }
- 
     
 }

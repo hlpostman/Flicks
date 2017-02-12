@@ -15,6 +15,7 @@ class MovieCell: UITableViewCell {
     
     @IBOutlet weak var posterImageView: UIImageView!
     
+    @IBOutlet weak var detailsPromptLabel: UILabel!
     var movies: NSDictionary!
     
     override func awakeFromNib() {
