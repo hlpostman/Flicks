@@ -62,7 +62,7 @@ I spent a few unsuccessful hours trying to build a details view controller. I wi
 
 **Flicks** is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **17** hours spent in total
+Time spent: **23** hours spent in total
 
 ## User Stories
 
@@ -80,7 +80,11 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [x] Homemade tab bar icons.
-- [x] Implemented the search bar that was an optional last week with a case-insensitive prefix search
+- [x] Implemented the search bar that was an optional last week
+	- [x] Case-insensitive searching
+	- [x] Search keywords anywhere in title (not just prefix of whole title, e.g. you can get “Hidden Figures” by searching “Fig” not just “Hid”)
+	- [x] Ignore trivial words such as “and”, “the”, and “a” except when at beginning of title
+		- [x] Search any word for titles of three words or less
 - [x] Customized detail view UI:
 	- [x] Movie info scrolls over poster backdrop
 	- [x] Movie overview is in fixed-size area, using its own scrollview to accommodate varying length descriptions
@@ -97,13 +101,13 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/hlpostman/Flicks/blob/f5f05817f5a74deea586c396b048dd10d41ba600/Flicks_Video_WalkThrough2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/hlpostman/Flicks/blob/master/Flicks_Video_WalkThrough2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-I had some trouble getting my search bar to search in a way that was both case-insensitive AND prefix oriented.  But I came up with a solution :D  You can make both your `searchText` input and your compare strings (titles keyed to from the movie stats dictionary) both `lowercased()` when you invoke either in the `.hasPrefix` filtering routine.  I would like to improve the search functionality so that you can search for “lego” and get “The Lego Movie” even though “lego” is not the movie prefix, but in such a way that the search “rin” still only gives “Rings”, not “Rings” and “Miss Pereg*rin*e’s Home for Peculiar Children.”
+I had some trouble getting my search bar to search in a way that was both case-insensitive AND prefix oriented.  But I came up with a solution :D  You can make both your `searchText` input and your compare strings (titles keyed to from the movie stats dictionary) both `lowercased()` when you invoke either in the `.hasPrefix` filtering routine.
 
 ## License
 
