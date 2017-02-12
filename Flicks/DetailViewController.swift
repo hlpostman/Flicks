@@ -13,6 +13,7 @@ import MBProgressHUD
 class DetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var overviewLabelScrollView: UIScrollView!
     @IBOutlet weak var castCollectionView: UICollectionView!
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var infoView: UIView!
@@ -75,6 +76,15 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         castCollectionView.dataSource = self
         scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: infoView.frame.origin.y + infoView.frame.size.height)
         scrollView.contentSize.height = 950
+        // Instead of setting overview label number of lines to 0, calculate the number of lines
+        // for each overview, so that this information can be used in setting the content size
+        // for the overview label scroll view.  This way, any long description has a sufficient
+        // content size, and the text of short descriptions never scrolls completely out of view
+        // as it will when the content size is much larger than the label.
+        overviewLabel.numberOfLines = ((movie["overview"] as? String)?.characters.count)! / 30
+        let overviewScrollHeight = overviewLabel.font.pointSize * CGFloat(overviewLabel.numberOfLines)
+        print("OverviewScrollHeight = \(overviewScrollHeight) and num lines is \(overviewLabel.numberOfLines) and font point size is \(overviewLabel.font.pointSize)")
+        overviewLabelScrollView.contentSize.height =  overviewScrollHeight
         // Set poster background
         if let posterPath = movie["poster_path"] as? String {
             let posterBaseURL = "https://image.tmdb.org/t/p/w500/"

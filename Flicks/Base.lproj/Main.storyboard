@@ -112,12 +112,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" id="XQ0-YF-gJQ">
-                                        <rect key="frame" x="8" y="650" width="359" height="488"/>
+                                        <rect key="frame" x="8" y="600" width="359" height="488"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Dwf-Lw-PDB">
-                                        <rect key="frame" x="31" y="650" width="315" height="300"/>
+                                        <rect key="frame" x="31" y="600" width="315" height="300"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UbK-LY-FcD">
@@ -155,7 +155,7 @@
                                         </cells>
                                     </collectionView>
                                     <view alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" id="ZFG-0X-qlZ">
-                                        <rect key="frame" x="8" y="350" width="359" height="300"/>
+                                        <rect key="frame" x="8" y="350" width="359" height="250"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yj2-iJ-uiu">
@@ -165,15 +165,21 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w9u-b5-SVA">
-                                                <frame key="frameInset" minX="8" minY="38" width="343" height="21"/>
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" id="zk8-pn-z0v">
+                                                <frame key="frameInset" minX="8" minY="67" width="343" height="94"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Q9y-mw-Jtk">
-                                                <frame key="frameInset" minX="8" minY="255" width="359" height="22"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w9u-b5-SVA">
+                                                        <rect key="frame" x="0.0" y="8" width="343" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </scrollView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Cast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Q9y-mw-Jtk">
+                                                <frame key="frameInset" minX="8" minY="200" width="359" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -192,6 +198,7 @@
                         <outlet property="castCollectionView" destination="Dwf-Lw-PDB" id="61D-rD-LUf"/>
                         <outlet property="infoView" destination="ZFG-0X-qlZ" id="30I-lT-3sB"/>
                         <outlet property="overviewLabel" destination="w9u-b5-SVA" id="7rP-2j-5AX"/>
+                        <outlet property="overviewLabelScrollView" destination="zk8-pn-z0v" id="8OW-1S-7kL"/>
                         <outlet property="posterImageView" destination="ap9-Ws-Joy" id="ddc-TX-szK"/>
                         <outlet property="scrollView" destination="00V-Wa-HbV" id="DAe-ue-Lmk"/>
                         <outlet property="titleLabel" destination="Yj2-iJ-uiu" id="ZXe-Ut-y6v"/>
