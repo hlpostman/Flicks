@@ -99,11 +99,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         if let posterURL = getPosterURL(id: (indexPath.row)) {
             cell.posterImageView.setImageWith(posterURL as URL)
         }
-        
-        //        Get poster image URL code, in case the asbtraction to function was a bad idea:
-        //        let posterPath = movie["poster_path"] as? String ?? "Error fetching poster_path"
-        //        let posterBaseURL = "https://image.tmdb.org/t/p/w500/"
-        //        let posterURL = NSURL(string: posterBaseURL + posterPath)
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
         cell.selectionStyle = .none
