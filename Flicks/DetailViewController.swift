@@ -44,7 +44,7 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20// .count of dictionary returned by request for "cast" endpoint
+        return cast?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -53,6 +53,7 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
             let castMemberName = castMember["name"] as? String ?? "Error fetching name"
             if let movieId = movie["id"] {
                 print("WE GOT AN ID BUY THE VANILLA! 🍌🍌🍌🍌🍌🍌🍌🍌\(movieId)🍌🍌🍌🍌🍌🍌🍌🍌\(castMemberName)🍌")
+                // Get and load cast member headshot
                 if let headshotPath = castMember["profile_path"] as? String {
                     let headshotBaseURL = "https://image.tmdb.org/t/p/w500/"
                     let headshotURL = NSURL(string: headshotBaseURL + headshotPath)
