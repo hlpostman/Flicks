@@ -97,7 +97,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://raw.githubusercontent.com/hlpostman/Flicks/master/Flicks_Video_WalkThrough2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/hlpostman/Flicks/blob/f5f05817f5a74deea586c396b048dd10d41ba600/Flicks_Video_WalkThrough2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
