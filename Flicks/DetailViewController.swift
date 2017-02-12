@@ -77,7 +77,7 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     
         castCollectionView.dataSource = self
         scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: infoView.frame.origin.y + infoView.frame.size.height)
-        scrollView.contentSize.height = 950
+        scrollView.contentSize.height = 960
         // Instead of setting overview label number of lines to 0, calculate the number of lines
         // for each overview, so that this information can be used in setting the content size
         // for the overview label scroll view.  This way, any long description has a sufficient
