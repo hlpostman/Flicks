@@ -74,7 +74,7 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     
         castCollectionView.dataSource = self
         scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: infoView.frame.origin.y + infoView.frame.size.height)
-        scrollView.contentSize.height = 1000
+        scrollView.contentSize.height = 950
         // Set poster background
         if let posterPath = movie["poster_path"] as? String {
             let posterBaseURL = "https://image.tmdb.org/t/p/w500/"
