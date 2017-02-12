@@ -43,6 +43,16 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        var mainCastSize = 0
+//        let testCast = cast!
+//        for member in testCast {
+//            if member["profile_path"] != nil {
+//                mainCastSize += 1
+//            }
+//        }
+//        print("Main cast size: \(mainCastSize)")
+//        print("Cast count: \(cast?.count)")
+//        return mainCastSize
         return cast?.count ?? 0
     }
     
@@ -54,11 +64,10 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
                 let headshotBaseURL = "https://image.tmdb.org/t/p/w500/"
                 let headshotURL = NSURL(string: headshotBaseURL + headshotPath)
                 cell.headshotImageView.setImageWith(headshotURL as! URL)
+                // Get and place cast member name
+                let castMemberName = castMember["name"] as? String ?? "Error fetching name"
+                cell.actorNameLabel.text = castMemberName
             }
-            // Get and place cast member name
-            let castMemberName = castMember["name"] as? String ?? "Error fetching name"
-            cell.actorNameLabel.text = castMemberName
-                
         }
         return cell
     }
