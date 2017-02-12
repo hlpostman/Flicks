@@ -105,12 +105,42 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
+    func extractKeywords(title: String) -> [String] {
+        var keywords = [String]()
+        keywords = title.lowercased().components(separatedBy: " ")
+        let doNotMatch = ["a":1, "an":1, "and":1, "at":1, "by":1, "for":1, "if":1, "in":1, "it":1, "of":1, "on":1, "or":1, "the":1, "with":1]
+        // First word of title is keyword even if insignificant.
+        // For titles that are longer than three words, remove
+        // occurrences of insignificant words
+        if keywords.count > 3 {
+            for _ in keywords[1..<keywords.count] {
+                for (index, word) in keywords[1..<keywords.count].enumerated() {
+                    if (doNotMatch[word] != nil) && (index + 1 < keywords.count) {
+//                        print(keywords)
+//                        print("the word \(word) at index \(index + 1) doesn't belong here. Deleting.")
+                        keywords.remove(at: index + 1)
+//                        print(keywords)
+                        break
+                    }
+                }
+            }
+        }
+        return keywords
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             filteredMovies = movies
         } else {
                 filteredMovies = searchText.isEmpty ? movies : movies!.filter({ (movie) -> Bool in
-                    return (movie["title"] as! String).lowercased().hasPrefix(searchText.lowercased())
+                    let titleKeywords = extractKeywords(title: movie["title"] as! String)
+                    for word in titleKeywords {
+                        if word.hasPrefix(searchText.lowercased()) {
+                            return true
+                        }
+                    }
+                   return false
+//                    return (movie["title"] as! String).lowercased().hasPrefix(searchText.lowercased())
             })
         }
         tableView.reloadData()
