@@ -70,6 +70,15 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         return cell
     }
     
+    func dismissAndResetScrollView() {
+        // Dismiss scroll view
+        scrollView.setContentOffset(CGPoint(x:0, y:0), animated: true)
+        // Reset overview label scroll view
+        overviewLabelScrollView.setContentOffset(CGPoint(x:0, y:0), animated: true)
+        // Reset cast collection view scroll
+        castCollectionView.setContentOffset(CGPoint(x:0, y:0), animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -107,6 +116,9 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         } else {
             print("💖NO MOVIEID💛")
         }
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissAndResetScrollView))
+        view.addGestureRecognizer(tap)
 //        self.tabBarController?.tabBar.isHidden = true
     }
 
