@@ -35,7 +35,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="153"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qq8-xZ-s86" id="wgX-1V-aGj">
-                                            <frame key="frameInset" width="328" height="152"/>
+                                            <frame key="frameInset" width="375" height="153"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" id="h7r-MG-4Cg">
@@ -119,7 +119,12 @@
                                 <frame key="frameInset" minY="74" width="375" height="593"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" id="XQ0-YF-gJQ">
+                                    <view alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" id="gC8-B5-34v" userLabel="Transparent Background">
+                                        <rect key="frame" x="8" y="540" width="359" height="488"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" misplaced="YES" id="XQ0-YF-gJQ">
                                         <rect key="frame" x="8" y="540" width="359" height="488"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -164,7 +169,7 @@
                                                 </cells>
                                             </collectionView>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" id="ZFG-0X-qlZ">
                                         <rect key="frame" x="8" y="350" width="359" height="190"/>
@@ -201,6 +206,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
