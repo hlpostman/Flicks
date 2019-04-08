@@ -33,10 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         topRatedNavigationController.tabBarItem.image = UIImage(named: "Top_Rated")
         
         // Tab bar controller
-        let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [nowPlayingNavigationController, topRatedNavigationController]
+//        let tabBarController = UITabBarController()
+//        tabBarController.viewControllers = [nowPlayingNavigationController, topRatedNavigationController]
         
-        window?.rootViewController = tabBarController
+        window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "ManagingSplitViewController")//tabBarController
         window?.makeKeyAndVisible()
         return true
     }
