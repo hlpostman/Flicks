@@ -20,7 +20,7 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     
-    var movie: NSDictionary!
+    var movie: NSDictionary?
     var cast: [NSDictionary]?
     
     func castNetworkRequest(movieId: Int) -> URLSessionTask {
@@ -92,24 +92,27 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         // for the overview label scroll view.  This way, any long description has a sufficient
         // content size, and the text of short descriptions never scrolls completely out of view
         // as it will when the content size is much larger than the label.
-        overviewLabel.numberOfLines = ((movie["overview"] as? String)?.characters.count)! / 30
+//        overviewLabel.numberOfLines = ((movie?["overview"] as? String)?.characters.count)! / 30 ?? 0
+        if let overviewText = movie?["overview"] as! String? {
+            overviewLabel.numberOfLines = overviewText.count / 30
+        }
         let overviewScrollHeight = overviewLabel.font.pointSize * CGFloat(overviewLabel.numberOfLines)
         overviewLabelScrollView.contentSize.height =  overviewScrollHeight
         // Set poster background
-        if let posterPath = movie["poster_path"] as? String {
+        if let posterPath = movie?["poster_path"] as? String {
             let posterBaseURL = "https://image.tmdb.org/t/p/w500/"
             let posterURL = NSURL(string: posterBaseURL + posterPath)
             posterImageView.setImageWith(posterURL as! URL)
         }
         // Set title and overview text
-        let title = movie["title"] as? String
+        let title = movie?["title"] as? String ?? ""
         titleLabel.text = title
-        let overview = movie["overview"] as? String
+        let overview = movie?["overview"] as? String ?? ""
         overviewLabel.text = overview
         overviewLabel.sizeToFit()
         
         // Do any additional setup after loading the view.
-        if let movieId = movie["id"] as? Int {
+        if let movieId = movie?["id"] as? Int {
             let task = castNetworkRequest(movieId: movieId)
             task.resume()
         }
