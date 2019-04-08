@@ -71,7 +71,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 //        tableView.allowsSelection = false
         
         // Make GET request to the "Now Playing" endpoint of The Movie Database API
-        let task = makeNetworkRequest(endpoint: endpoint)
+        let task = makeNetworkRequest(endpoint: "now_playing")//endpoint)
         task.resume()
 //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self.cell.detailsPromptLabel, action: #selector(goToDetails))
 //        view.addGestureRecognizer(tap)
@@ -80,7 +80,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     func refreshControlAction (refreshControl: UIRefreshControl) {
-        let task = makeNetworkRequest(endpoint: endpoint)
+        let task = makeNetworkRequest(endpoint: "now_playing")//endpoint)
         refreshControl.endRefreshing()
         task.resume()
     }
@@ -106,6 +106,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.overviewLabel.text = overview
         cell.selectionStyle = .none
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        detailViewController.movie = filteredMovies![indexPath.row]
+        splitViewController?.showDetailViewController(detailViewController, sender: nil)
     }
     
     func extractKeywords(title: String) -> [String] {
@@ -147,24 +153,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             })
         }
         tableView.reloadData()
-    }
-    
-    
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        let cell = sender as! UITableViewCell
-        let indexPath = tableView.indexPath(for: cell)
-        let movie = filteredMovies![(indexPath?.row)!]
-        
-        let detailViewController = segue.destination as! DetailViewController
-        detailViewController.movie = movie
-        detailViewController.hidesBottomBarWhenPushed = true
     }
     
 }
