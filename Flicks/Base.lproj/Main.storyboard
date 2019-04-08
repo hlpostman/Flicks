@@ -82,7 +82,6 @@
                                             <outlet property="overviewLabel" destination="6er-XP-j46" id="AQ8-j1-Jvt"/>
                                             <outlet property="posterImageView" destination="RLi-Ba-A3B" id="Ls9-Fu-Wyq"/>
                                             <outlet property="titleLabel" destination="prM-aK-WHc" id="4T9-Tz-z4T"/>
-                                            <segue destination="l9x-s1-PQO" kind="push" id="hVz-f6-gZ1"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -106,10 +105,10 @@
             </objects>
             <point key="canvasLocation" x="306" y="-475"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--DetailViewController-->
         <scene sceneID="7aV-eO-vao">
             <objects>
-                <viewController id="l9x-s1-PQO" customClass="DetailViewController" customModule="Flicks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" title="DetailViewController" id="l9x-s1-PQO" customClass="DetailViewController" customModule="Flicks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eek-lu-Q1Y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -229,10 +228,10 @@
             </objects>
             <point key="canvasLocation" x="-674" y="432"/>
         </scene>
-        <!--SplitViewController-->
+        <!--ManagingSplitViewController-->
         <scene sceneID="L69-eM-SYR">
             <objects>
-                <splitViewController title="SplitViewController" id="lKQ-hf-Snq" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="ManagingSplitViewController" title="ManagingSplitViewController" id="lKQ-hf-Snq" sceneMemberID="viewController">
                     <connections>
                         <segue destination="7cZ-wh-AA4" kind="relationship" relationship="masterViewController" id="5It-Po-bob"/>
                         <segue destination="l9x-s1-PQO" kind="relationship" relationship="detailViewController" id="OrN-Hu-2Gj"/>
@@ -261,7 +260,4 @@
             <point key="canvasLocation" x="-673" y="-474"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="OrN-Hu-2Gj"/>
-    </inferredMetricsTieBreakers>
 </document>
